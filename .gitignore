@@ -1,0 +1,9 @@
+Gemfile.lock
+
+one2influx.log
+bin/generate_queries
+lib/test_data/
+
+.idea/
+vendor/
+.bundle/

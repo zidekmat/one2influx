@@ -1,0 +1,90 @@
+#!/usr/bin/env ruby
+
+begin
+  require 'rubygems'
+rescue Exception
+  $stderr.puts 'Failed to load rubygems!'
+end
+
+# add local dirs to load path if necessary
+lib = File.expand_path(File.join('..', '..', 'lib'), __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
+require 'one2influx'
+
+# Load configuration
+begin
+  $CFG = ::One2Influx::Config.new
+rescue Exception => e
+  if $LOG.nil?
+    $stderr.puts e.message
+  else
+    $LOG.error e.message
+    $stderr.puts 'Failure, exiting. Check the log file.'
+  end
+  exit 1
+end
+
+# Register termination signals
+Signal.trap('INT') do
+  exit 0
+end
+Signal.trap('TERM') do
+  exit 0
+end
+
+# Checks connection with ONE using provided credentials
+unless $CFG.is_one_available?
+  $stderr.puts 'Failure, exiting. Check the log file.'
+  exit 2
+end
+
+# Load InfluxDB connection link
+begin
+  influx = ::One2Influx::Influx.new
+rescue Exception => e
+  $LOG.error "Error while getting UUID: #{e.message}"
+  $stderr.puts 'Failure, exiting. Check the log file.'
+  exit 3
+end
+
+# Check if InfluxDB database and policy exist
+unless influx.db_exists?
+  $stderr.puts 'Failure, exiting. Check the log file.'
+  exit 4
+end
+
+loop do
+  # Timestamp is same for all points in batch
+  # Get data from ONE
+  retries = 4
+  begin
+    data = ::One2Influx::Data.new
+    #data = ::One2Influx::FakeData.new
+    $LOG.info 'Successfully fetched data from ONE.'
+  rescue Exception => e
+    if retries < 0
+      $LOG.error 'Unable to fetch ONE data for the 5th time. Error:' +
+                     "#{e.message}. Stacktrace: #{e.backtrace}"
+      sleep($CFG.sec_interval)
+      next
+    else
+      $LOG.warn "Unable to fetch ONE data. Trying #{retries+1} more times. " +
+                    "Error: #{e.message}"
+      retries -= 1
+      sleep(0.01)
+      retry
+    end
+
+  end
+
+  # Store data
+  begin
+    influx.store(data.points)
+    $LOG.info "Successfully stored #{data.points.length} data points."
+  rescue Exception => e
+    $LOG.error e.message
+  end
+
+  sleep($CFG.sec_interval)
+end
