@@ -32,7 +32,7 @@ class One2Influx::Cluster < ::One2Influx::OneObject
     host_ids.each do |id|
       host_doc = Nokogiri::XML(@hosts_xml[id])
       @metric_names.each do |metric|
-        host_metric = metric.split('HOSTS_')[1]
+        host_metric = metric.split('CLUSTER_')[1]
         unless host_metric.nil?
           ni_element = host_doc.css(host_metric).first
           if ni_element.nil?

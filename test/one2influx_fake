@@ -9,8 +9,16 @@ end
 # add local dirs to load path if necessary
 lib = File.expand_path(File.join('..', '..', 'lib'), __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+fake_lib = File.expand_path(File.join('..', 'fake_lib'), __FILE__)
+$LOAD_PATH.unshift(fake_lib) unless $LOAD_PATH.include?(fake_lib)
 
+# Load all files required for production
 require 'one2influx'
+# Load files required for testing
+require 'gyoku'
+require 'rubystats'
+require 'fake_data'
+require 'fake_one'
 
 # Load configuration
 begin
@@ -33,12 +41,6 @@ Signal.trap('TERM') do
   exit 0
 end
 
-# Checks connection with ONE using provided credentials
-unless $CFG.is_one_available?
-  $stderr.puts 'Failure, exiting. Check the log file.'
-  exit 2
-end
-
 # Load InfluxDB connection link
 begin
   influx = ::One2Influx::Influx.new
@@ -59,9 +61,11 @@ loop do
   # Get data from ONE
   retries = 4
   begin
-    data = ::One2Influx::Data.new
+    #data = ::One2Influx::Data.new
+    data = ::One2Influx::FakeData.new
     $LOG.info 'Successfully fetched data from ONE.'
   rescue Exception => e
+    raise e
     if retries < 0
       $LOG.error 'Unable to fetch ONE data for the 5th time. Error:' +
                      "#{e.message}. Stacktrace: #{e.backtrace}"

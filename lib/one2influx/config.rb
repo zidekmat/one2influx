@@ -89,7 +89,9 @@ class One2Influx::Config
               #'NET_TX', # [B] sent to the networ
               #'NET_RX'  # [B] received from the network
           ],
-          cust_metrics: ['REAL_CPU']
+          cust_metrics: [
+              #'REAL_CPU'
+          ]
 
       },
       # Datastore

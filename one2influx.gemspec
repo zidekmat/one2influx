@@ -19,4 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'opennebula', '~> 4.12'
   s.add_runtime_dependency 'nokogiri', '~> 1.6'
+  s.add_development_dependency 'gyoku', '~> 1.3'
+  s.add_development_dependency 'rubystats', '~> 0.2'
+
 end

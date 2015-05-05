@@ -1,0 +1,59 @@
+#!/usr/bin/env ruby
+
+begin
+  require 'rubygems'
+rescue Exception
+  $stderr.puts 'Failed to load rubygems!'
+end
+
+# add local dirs to load path if necessary
+lib = File.expand_path(File.join('..', '..', 'lib'), __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
+require 'one2influx'
+
+cfg = ::One2Influx::Config.new
+
+=begin
+for i in 10..16 do
+  puts "DROP CONTINUOUS QUERY cq#{i} ON test;"
+end
+=end
+
+i = 100
+cfg.storage.each do |object, values|
+  tags = values[:tags].keys
+  (values[:metrics] | values[:cust_metrics]).each do |metric|
+    #puts "DROP MEASUREMENT #{metric};"
+    puts "CREATE CONTINUOUS QUERY cq#{i} ON test "+
+             "BEGIN "+
+             "SELECT mean(value) AS value "+
+             "INTO \"test\".\"one_day\".#{metric} "+
+             "FROM \"test\".\"ten_hours\".#{metric} "+
+             "GROUP BY time(1m), #{tags.join(', ')}"+
+             " END;"
+    puts "CREATE CONTINUOUS QUERY cq#{i+1} ON test "+
+             "BEGIN "+
+             "SELECT mean(value) AS value "+
+             "INTO \"test\".\"eight_days\".#{metric} "+
+             "FROM \"test\".\"one_day\".#{metric} "+
+             "GROUP BY time(8m), #{tags.join(', ')}"+
+             " END;"
+    puts "CREATE CONTINUOUS QUERY cq#{i+2} ON test "+
+             "BEGIN "+
+             "SELECT mean(value) AS value "+
+             "INTO \"test\".\"one_month\".#{metric} "+
+             "FROM \"test\".\"eight_days\".#{metric} "+
+             "GROUP BY time(37m), #{tags.join(', ')}"+
+             " END;"
+    puts "CREATE CONTINUOUS QUERY cq#{i+3} ON test "+
+             "BEGIN "+
+             "SELECT mean(value) AS value "+
+             "INTO \"test\".\"forever\".#{metric} "+
+             "FROM \"test\".\"one_month\".#{metric} "+
+             "GROUP BY time(450m), #{tags.join(', ')}"+
+             " END;"
+    exit 1
+    i += 1
+  end
+end

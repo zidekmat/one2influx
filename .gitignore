@@ -1,4 +1,5 @@
 Gemfile.lock
+one2influx-0.0.1.gem
 
 one2influx.log
 bin/generate_queries

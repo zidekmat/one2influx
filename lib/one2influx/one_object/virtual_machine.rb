@@ -23,10 +23,8 @@ class One2Influx::VirtualMachine < ::One2Influx::OneObject
     template_id = @doc.xpath('//TEMPLATE').first.content
     template = OpenNebula::Template.new(OpenNebula::Template.build_xml(template_id), @client)
     rc = template.info
-    if OpenNebula.is_error?(rc)
-      puts rc.message
-      exit -1
-    end
+    raise rc.message if OpenNebula.is_error?(rc)
+
     doc = Nokogiri::XML(template.to_xml)
 
     # TODO kontrola jestli ma host CPU a v metrikach jestli je CPU

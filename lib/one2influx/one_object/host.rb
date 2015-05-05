@@ -21,6 +21,7 @@ class One2Influx::Host < ::One2Influx::OneObject
         @tags[:DSS_IDS] = ',,' + @datastores.join(',,') + ',,'
       end
     end
+
     super(xml, client)
   end
 
@@ -38,10 +39,6 @@ class One2Influx::Host < ::One2Influx::OneObject
   #  this host
   def load_datastores
     @datastores = []
-#    xml ='<DATASTORES>
-#<DS><ID>1</ID><FREE_MB>4545</FREE_MB></DS><DS><ID>0</ID><FREE_MB>45453</FREE_MB></DS>
-#<DATASTORES/>'
-#    @doc = Nokogiri::XML(xml)
     @doc.xpath('//DATASTORES/DS/ID').each do |ds|
       @datastores << ds.content
     end

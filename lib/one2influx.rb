@@ -9,9 +9,6 @@ require 'one2influx/one_object/datastore'
 require 'one2influx/one_object/virtual_machine'
 require 'one2influx/one_object/cluster'
 
-# TODO remove
-#require 'test/fake_data'
-#require 'test/fake_one'
 
 #require 'daemons'
 require 'opennebula'
