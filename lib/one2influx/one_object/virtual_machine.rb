@@ -22,7 +22,12 @@ class One2Influx::VirtualMachine < ::One2Influx::OneObject
   #  Values might go over 1.0 as there is an overhead
   # @return [float] current usage over max usage
   def get_MEMORY_PERC
-    template_id = @doc.xpath('//TEMPLATE').first.content
+    template_id = @doc.xpath('//TEMPLATE').first
+    if template_id.content.nil?
+      $LOG.error "Unable to get metric 'MEMORY_PERC' in #{self.class}."
+      return
+    end
+    template_id = template_id.content
     template = OpenNebula::Template.new(OpenNebula::Template.build_xml(template_id), @client)
     rc = template.info
     raise rc.message if OpenNebula.is_error?(rc)
