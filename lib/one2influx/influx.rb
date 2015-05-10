@@ -51,6 +51,7 @@ class One2Influx::Influx
         raise 'Failed to store data to InfluxDB. Received HTTP code ' +
                   "#{response.code}, body: #{response.body}"
       end
+      $LOG.info "Successfully stored #{slice.length} data points."
     end
   end
 
@@ -121,6 +122,7 @@ class One2Influx::Influx
   private
 
   # @param [Net::HTTP::Post|Net::HTTP::Get] request
+  # @raise [Exception] Net::*
   # @return [Net::HTTPResponse]
   def make_request(request)
     if @authenticate
@@ -136,8 +138,13 @@ class One2Influx::Influx
       end
     rescue Exception => e
       if retries < 0 then
-        $LOG.error 'Unable to post data to InfluxDB for 5th time! ' +
-                       "Error: #{e.message}."
+        if e.is_a? Net::ReadTimeout
+          raise 'Unable to post data to InfluxDB for 5th time! ' +
+                    'Timed out, possibly not stored.'
+        else
+          raise 'Unable to post data to InfluxDB for 5th time! ' +
+                    "Error: #{e.message}."
+        end
         return nil
       else
         $LOG.warn "Unable to post data to InfluxDB! Trying #{retries+1} more " +

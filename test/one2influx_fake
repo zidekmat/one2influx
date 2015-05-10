@@ -61,11 +61,9 @@ loop do
   # Get data from ONE
   retries = 4
   begin
-    #data = ::One2Influx::Data.new
     data = ::One2Influx::FakeData.new
     $LOG.info 'Successfully fetched data from ONE.'
   rescue Exception => e
-    raise e
     if retries < 0
       $LOG.error 'Unable to fetch ONE data for the 5th time. Error:' +
                      "#{e.message}. Stacktrace: #{e.backtrace}"
@@ -84,7 +82,7 @@ loop do
   # Store data
   begin
     influx.store(data.points)
-    $LOG.info "Successfully stored #{data.points.length} data points."
+    $LOG.info "Successfully stored all #{data.points.length} data points."
   rescue Exception => e
     $LOG.error e.message
   end

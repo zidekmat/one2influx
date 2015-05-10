@@ -8,7 +8,7 @@ class One2Influx::FakeData
     counter = {hosts: 0, vms: 0, dss: 0, clusters: 0}
     fake_one = One2Influx::FakeOne.new
 
-    # Get data from all hosts in the pool
+    # Get data from all hMEM_USAGEosts in the pool
     hosts_xml = {}
     oo_hosts = []
     fake_one.hosts.each do |one_host|
@@ -56,7 +56,7 @@ class One2Influx::FakeData
       counter[:dss] += 1
     end
 
-    $LOG.info "Stored data for #{counter[:vms]} VMs, #{counter[:hosts]} hosts" +
+    $LOG.info "Fetched data for #{counter[:vms]} VMs, #{counter[:hosts]} hosts" +
                   ", #{counter[:dss]} datastores and #{counter[:clusters]} " +
                   'clusters.'
   end

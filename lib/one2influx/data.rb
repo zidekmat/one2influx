@@ -77,7 +77,7 @@ class One2Influx::Data
       counter[:dss] += 1
     end
 
-    $LOG.info "Stored data for #{counter[:vms]} VMs, #{counter[:hosts]} hosts" +
+    $LOG.info "Fetched data for #{counter[:vms]} VMs, #{counter[:hosts]} hosts" +
                   ", #{counter[:dss]} datastores and #{counter[:clusters]} " +
                   'clusters.'
   end

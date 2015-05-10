@@ -85,12 +85,12 @@ class One2Influx::Config
           },
           metrics: [
               'MEMORY', # [kB] memory consumption
-              'CPU',    # [%] 1 CPU consumed (two fully consumed cpu is 200)
+              'CPU',    # [%] 1 VCPU consumed (two fully consumed cpu is 200)
               #'NET_TX', # [B] sent to the networ
               #'NET_RX'  # [B] received from the network
           ],
           cust_metrics: [
-              #'REAL_CPU'
+              'MEMORY_PERC' # Computes percentage usage of memory for VM
           ]
 
       },

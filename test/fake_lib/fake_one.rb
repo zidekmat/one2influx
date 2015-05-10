@@ -2,6 +2,7 @@ require 'gyoku'
 require 'nokogiri'
 require 'rubystats'
 
+# Class for generating fake XML data as if it was from ONE
 class One2Influx::FakeOne
 
   attr_reader :clusters, :datastores, :hosts
@@ -22,6 +23,9 @@ class One2Influx::FakeOne
     init_hosts
   end
 
+  # Gives virtual machines for given host ID
+  # @param [int] host_id
+  # @return [array] of virtual machines xml for given host_id
   def get_vms(host_id)
     vms = []
     @hosts[host_id][:hash][:HOST][:VMS].each do |hash|
@@ -48,6 +52,7 @@ class One2Influx::FakeOne
 
   private
 
+  # Generates random hosts
   def init_hosts
     all_vms = (0..@count[:vms]).to_a
     all_vms.shuffle!
@@ -134,6 +139,7 @@ class One2Influx::FakeOne
     hosts
   end
 
+  # Generates random clusters
   def init_clusters
     @clusters = []
     for id in 0..99 do
@@ -151,6 +157,7 @@ class One2Influx::FakeOne
 
   end
 
+  # Generate random datastores
   def init_dss
     ds_mad = %w(fs vmfs lvm ceph dev)
     tm_mad = %w(shared ssh qcow2 vmfs ceph lvm fs_lvm dev)

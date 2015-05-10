@@ -15,20 +15,29 @@ class One2Influx::VirtualMachine < ::One2Influx::OneObject
     $CFG.storage[:vm][:inh_tags].each do |name, value|
       @tags[name] = parent_host.tags[value.to_sym]
     end
-
     super(xml, client)
   end
 
-  def get_REAL_CPU
+  # Computes percentage usage of memory for virtual machine.
+  #  Values might go over 1.0 as there is an overhead
+  # @return [float] current usage over max usage
+  def get_MEMORY_PERC
     template_id = @doc.xpath('//TEMPLATE').first.content
     template = OpenNebula::Template.new(OpenNebula::Template.build_xml(template_id), @client)
     rc = template.info
     raise rc.message if OpenNebula.is_error?(rc)
 
     doc = Nokogiri::XML(template.to_xml)
+    ni_element = doc.xpath('//TEMPLATE/MEMORY').first
+    puts @metrics
+    if ni_element.nil? || @metrics[:MEMORY].nil?
+      $LOG.error "Unable to get metric 'MEMORY_PERC' in #{self.class}."
+      return
+    end
 
-    # TODO kontrola jestli ma host CPU a v metrikach jestli je CPU
-    value = (@metrics['CPU'].to_f / 100.0) * doc.xpath('//TEMPLATE/CPU').first.content.to_f
-    (value * 100).round / 100.0
+    # Convert //TEMPLATE/MEMORY from MB to kB as //VM/CPU is in kB
+    max_mem = ni_element.content.to_f * 1000.0
+
+    @metrics[:MEMORY].to_f / max_mem
   end
 end
