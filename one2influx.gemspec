@@ -3,8 +3,7 @@ Gem::Specification.new do |s|
   s.version     = '0.0.1'
   s.summary     = 'Daemon for getting monitoring data from OpenNebula\'s ' +
       'XML-RPC API and storing them to InfluxDB.'
-  s.description = 'Daemon for getting monitoring data from OpenNebula\'s ' +
-      'XML-RPC API and storing them to InfluxDB.'
+  s.description = "One2influx is small ruby daemon for getting monitoring data from OpenNebula's XML-RPC API and storing it to InfluxDB. It needs Ruby 2+ to run."
   s.authors     = ['Matej Zidek']
   s.email       = 'zidek.matej@gmail.com'
   s.homepage    = 'http://rubygems.org/gems/hola'
