@@ -16,7 +16,7 @@ $ cd one2influx && gem install bundle && bundle install
 ```
 Then just set up your connection with ONE and InfluxDB and run
 ```bash
-$ ./bin/one2influx &
+$ one2influx &
 ```
 
 ### Settings
