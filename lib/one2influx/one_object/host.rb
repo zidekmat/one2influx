@@ -1,3 +1,4 @@
+# Representation of ONE host
 class One2Influx::Host < ::One2Influx::OneObject
 
   attr_reader :datastores

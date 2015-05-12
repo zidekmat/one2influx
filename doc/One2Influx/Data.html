@@ -1,0 +1,445 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: One2Influx::Data
+  
+    &mdash; Documentation by YARD 0.8.7.4
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!One2Influx/Data.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (D)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../One2Influx.html" title="One2Influx (module)">One2Influx</a></span></span>
+     &raquo; 
+    <span class="title">Data</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: One2Influx::Data
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">One2Influx::Data</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/one2influx/data.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Wrapper for function that loads all data from OpenNebula</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#points-instance_method" title="#points (instance method)">- (Object) <strong>points</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute points.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Data) <strong>initialize</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Loads all data from ONE according to $CFG and stores it in  instance
+variable @points.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="One2Influx::Data (class)">Data</a></span></tt>) <strong>initialize</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Loads all data from ONE according to $CFG and stores it in</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_instance'>instance</span> <span class='id identifier rubyid_variable'>variable</span> <span class='ivar'>@points</span>
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/one2influx/data.rb', line 8</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
+  <span class='ivar'>@points</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_counter'>counter</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='label'>hosts:</span> <span class='int'>0</span><span class='comma'>,</span> <span class='label'>vms:</span> <span class='int'>0</span><span class='comma'>,</span> <span class='label'>dss:</span> <span class='int'>0</span><span class='comma'>,</span> <span class='label'>clusters:</span> <span class='int'>0</span><span class='rbrace'>}</span>
+  <span class='comment'># Connect to ONE
+</span>  <span class='ivar'>@client</span> <span class='op'>=</span> <span class='const'>OpenNebula</span><span class='op'>::</span><span class='const'>Client</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='gvar'>$CFG</span><span class='period'>.</span><span class='id identifier rubyid_one'>one</span><span class='lbracket'>[</span><span class='symbol'>:credentials</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='gvar'>$CFG</span><span class='period'>.</span><span class='id identifier rubyid_one'>one</span><span class='lbracket'>[</span><span class='symbol'>:endpoint</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+  <span class='comment'># Load pool of all hosts
+</span>  <span class='id identifier rubyid_host_pool'>host_pool</span> <span class='op'>=</span> <span class='const'>OpenNebula</span><span class='op'>::</span><span class='const'>HostPool</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='ivar'>@client</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_rc'>rc</span> <span class='op'>=</span> <span class='id identifier rubyid_host_pool'>host_pool</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_rc'>rc</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span> <span class='kw'>if</span> <span class='const'>OpenNebula</span><span class='period'>.</span><span class='id identifier rubyid_is_error?'>is_error?</span><span class='lparen'>(</span><span class='id identifier rubyid_rc'>rc</span><span class='rparen'>)</span>
+
+  <span class='comment'># Get data from all hosts in the pool
+</span>  <span class='id identifier rubyid_hosts_xml'>hosts_xml</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span> <span class='comment'># XML of all hosts, passed to theirs cluster
+</span>  <span class='id identifier rubyid_oo_hosts'>oo_hosts</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>  <span class='comment'># array of all instances of OneObject::Host
+</span>  <span class='id identifier rubyid_host_pool'>host_pool</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_one_host'>one_host</span><span class='op'>|</span>
+    <span class='id identifier rubyid_host'>host</span> <span class='op'>=</span> <span class='op'>::</span><span class='const'>One2Influx</span><span class='op'>::</span><span class='const'>Host</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_one_host'>one_host</span><span class='period'>.</span><span class='id identifier rubyid_to_xml'>to_xml</span><span class='comma'>,</span> <span class='ivar'>@client</span><span class='rparen'>)</span>
+    <span class='comment'># Get data from all VMs belonging to current host
+</span>    <span class='id identifier rubyid_host'>host</span><span class='period'>.</span><span class='id identifier rubyid_vms'>vms</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_vm_id'>vm_id</span><span class='op'>|</span>
+      <span class='id identifier rubyid_xml_rep'>xml_rep</span> <span class='op'>=</span> <span class='const'>OpenNebula</span><span class='op'>::</span><span class='const'>VirtualMachine</span><span class='period'>.</span><span class='id identifier rubyid_build_xml'>build_xml</span><span class='lparen'>(</span><span class='id identifier rubyid_vm_id'>vm_id</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_one_vm'>one_vm</span> <span class='op'>=</span> <span class='const'>OpenNebula</span><span class='op'>::</span><span class='const'>VirtualMachine</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_xml_rep'>xml_rep</span><span class='comma'>,</span> <span class='ivar'>@client</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_rc'>rc</span> <span class='op'>=</span> <span class='id identifier rubyid_one_vm'>one_vm</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_rc'>rc</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span> <span class='kw'>if</span> <span class='const'>OpenNebula</span><span class='period'>.</span><span class='id identifier rubyid_is_error?'>is_error?</span><span class='lparen'>(</span><span class='id identifier rubyid_rc'>rc</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_vm'>vm</span> <span class='op'>=</span> <span class='op'>::</span><span class='const'>One2Influx</span><span class='op'>::</span><span class='const'>VirtualMachine</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_one_vm'>one_vm</span><span class='period'>.</span><span class='id identifier rubyid_to_xml'>to_xml</span><span class='comma'>,</span> <span class='ivar'>@client</span><span class='comma'>,</span> <span class='id identifier rubyid_host'>host</span><span class='rparen'>)</span>
+      <span class='ivar'>@points</span> <span class='op'>+=</span> <span class='id identifier rubyid_vm'>vm</span><span class='period'>.</span><span class='id identifier rubyid_serialize_as_points'>serialize_as_points</span>
+      <span class='id identifier rubyid_counter'>counter</span><span class='lbracket'>[</span><span class='symbol'>:vms</span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='int'>1</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_hosts_xml'>hosts_xml</span><span class='lbracket'>[</span><span class='id identifier rubyid_host'>host</span><span class='period'>.</span><span class='id identifier rubyid_tags'>tags</span><span class='lbracket'>[</span><span class='symbol'>:HOST_ID</span><span class='rbracket'>]</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_one_host'>one_host</span><span class='period'>.</span><span class='id identifier rubyid_to_xml'>to_xml</span>
+    <span class='id identifier rubyid_oo_hosts'>oo_hosts</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_host'>host</span>
+    <span class='ivar'>@points</span> <span class='op'>+=</span> <span class='id identifier rubyid_host'>host</span><span class='period'>.</span><span class='id identifier rubyid_serialize_as_points'>serialize_as_points</span>
+    <span class='id identifier rubyid_counter'>counter</span><span class='lbracket'>[</span><span class='symbol'>:hosts</span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='int'>1</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Load pool of all clusters
+</span>  <span class='id identifier rubyid_cluster_pool'>cluster_pool</span> <span class='op'>=</span> <span class='const'>OpenNebula</span><span class='op'>::</span><span class='const'>ClusterPool</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='ivar'>@client</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_rc'>rc</span> <span class='op'>=</span> <span class='id identifier rubyid_cluster_pool'>cluster_pool</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_rc'>rc</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span> <span class='kw'>if</span> <span class='const'>OpenNebula</span><span class='period'>.</span><span class='id identifier rubyid_is_error?'>is_error?</span><span class='lparen'>(</span><span class='id identifier rubyid_rc'>rc</span><span class='rparen'>)</span>
+<span class='comment'>#
+</span>  <span class='comment'># Get data from all clusters in the pool
+</span>  <span class='id identifier rubyid_cluster_pool'>cluster_pool</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_one_cluster'>one_cluster</span><span class='op'>|</span>
+    <span class='id identifier rubyid_cluster'>cluster</span> <span class='op'>=</span> <span class='op'>::</span><span class='const'>One2Influx</span><span class='op'>::</span><span class='const'>Cluster</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_one_cluster'>one_cluster</span><span class='period'>.</span><span class='id identifier rubyid_to_xml'>to_xml</span><span class='comma'>,</span> <span class='ivar'>@client</span><span class='comma'>,</span><span class='id identifier rubyid_hosts_xml'>hosts_xml</span><span class='rparen'>)</span>
+    <span class='ivar'>@points</span> <span class='op'>+=</span> <span class='id identifier rubyid_cluster'>cluster</span><span class='period'>.</span><span class='id identifier rubyid_serialize_as_points'>serialize_as_points</span>
+    <span class='id identifier rubyid_counter'>counter</span><span class='lbracket'>[</span><span class='symbol'>:clusters</span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='int'>1</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Load pool of all datastores
+</span>  <span class='id identifier rubyid_ds_pool'>ds_pool</span> <span class='op'>=</span> <span class='const'>OpenNebula</span><span class='op'>::</span><span class='const'>DatastorePool</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='ivar'>@client</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_rc'>rc</span> <span class='op'>=</span> <span class='id identifier rubyid_ds_pool'>ds_pool</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_rc'>rc</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span> <span class='kw'>if</span> <span class='const'>OpenNebula</span><span class='period'>.</span><span class='id identifier rubyid_is_error?'>is_error?</span><span class='lparen'>(</span><span class='id identifier rubyid_rc'>rc</span><span class='rparen'>)</span>
+
+  <span class='comment'># Get hash of all hosts for every datastore if these tags are required
+</span>  <span class='comment'># It has form {DS_ID_1: [HOST_ID_1, HOST_ID_2, ...], ...}
+</span>  <span class='id identifier rubyid_ds_has_hosts'>ds_has_hosts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='kw'>if</span> <span class='gvar'>$CFG</span><span class='period'>.</span><span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='symbol'>:ds</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:tags</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='symbol'>:HOSTS_IDS</span>
+    <span class='id identifier rubyid_oo_hosts'>oo_hosts</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_host'>host</span><span class='op'>|</span>
+      <span class='id identifier rubyid_host'>host</span><span class='period'>.</span><span class='id identifier rubyid_datastores'>datastores</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ds'>ds</span><span class='op'>|</span>
+        <span class='id identifier rubyid_ds_has_hosts'>ds_has_hosts</span><span class='lbracket'>[</span><span class='id identifier rubyid_ds'>ds</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='id identifier rubyid_ds_has_hosts'>ds_has_hosts</span><span class='lbracket'>[</span><span class='id identifier rubyid_ds'>ds</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_host'>host</span><span class='period'>.</span><span class='id identifier rubyid_tags'>tags</span><span class='lbracket'>[</span><span class='symbol'>:HOST_ID</span><span class='rbracket'>]</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Get data from all datastores in the pool
+</span>  <span class='id identifier rubyid_ds_pool'>ds_pool</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_one_ds'>one_ds</span><span class='op'>|</span>
+    <span class='id identifier rubyid_ds'>ds</span> <span class='op'>=</span> <span class='op'>::</span><span class='const'>One2Influx</span><span class='op'>::</span><span class='const'>Datastore</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_one_ds'>one_ds</span><span class='period'>.</span><span class='id identifier rubyid_to_xml'>to_xml</span><span class='comma'>,</span> <span class='ivar'>@client</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_hosts'>hosts</span> <span class='op'>=</span> <span class='id identifier rubyid_ds_has_hosts'>ds_has_hosts</span><span class='lbracket'>[</span><span class='id identifier rubyid_ds'>ds</span><span class='period'>.</span><span class='id identifier rubyid_tags'>tags</span><span class='lbracket'>[</span><span class='symbol'>:DS_ID</span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_hosts'>hosts</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='comment'># This doesn&#39;t do anything if tag HOSTS_IDS is not enabled
+</span>    <span class='id identifier rubyid_ds'>ds</span><span class='period'>.</span><span class='id identifier rubyid_add_hosts_ids'>add_hosts_ids</span><span class='lparen'>(</span><span class='id identifier rubyid_hosts'>hosts</span><span class='rparen'>)</span>
+    <span class='ivar'>@points</span> <span class='op'>+=</span> <span class='id identifier rubyid_ds'>ds</span><span class='period'>.</span><span class='id identifier rubyid_serialize_as_points'>serialize_as_points</span>
+    <span class='id identifier rubyid_counter'>counter</span><span class='lbracket'>[</span><span class='symbol'>:dss</span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='int'>1</span>
+  <span class='kw'>end</span>
+
+  <span class='gvar'>$LOG</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Fetched data for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_counter'>counter</span><span class='lbracket'>[</span><span class='symbol'>:vms</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> VMs, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_counter'>counter</span><span class='lbracket'>[</span><span class='symbol'>:hosts</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> hosts</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_counter'>counter</span><span class='lbracket'>[</span><span class='symbol'>:dss</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> datastores and </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_counter'>counter</span><span class='lbracket'>[</span><span class='symbol'>:clusters</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
+                <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>clusters.</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="points-instance_method">
+  
+    - (<tt>Object</tt>) <strong>points</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute points</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/one2influx/data.rb', line 4</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_points'>points</span>
+  <span class='ivar'>@points</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+</div>
+
+    <div id="footer">
+  Generated on Tue May 12 23:40:12 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.4 (ruby-2.2.2).
+</div>
+
+  </body>
+</html>

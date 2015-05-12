@@ -24,7 +24,6 @@ class One2Influx::FakeData
       @points += host.serialize_as_points
       counter[:hosts] += 1
     end
-
     #
     # Get data from all clusters in the pool
     fake_one.clusters.each do |one_cluster|

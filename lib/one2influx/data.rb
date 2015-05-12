@@ -1,10 +1,10 @@
-require 'opennebula'
-require 'nokogiri'
-
+# Wrapper for function that loads all data from OpenNebula
 class One2Influx::Data
 
   attr_reader :points
 
+  # Loads all data from ONE according to $CFG and stores it in
+  #  instance variable @points
   def initialize
     @points = []
     counter = {hosts: 0, vms: 0, dss: 0, clusters: 0}

@@ -1,3 +1,4 @@
+# Representation of ONE virtual machine
 class One2Influx::VirtualMachine < ::One2Influx::OneObject
 
   #
@@ -23,7 +24,7 @@ class One2Influx::VirtualMachine < ::One2Influx::OneObject
   # @return [float] current usage over max usage
   def get_MEMORY_PERC
     template_id = @doc.xpath('//TEMPLATE').first
-    if template_id.content.nil?
+    if template_id.nil? || template_id.content.nil?
       $LOG.error "Unable to get metric 'MEMORY_PERC' in #{self.class}."
       return
     end

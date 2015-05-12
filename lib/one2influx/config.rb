@@ -1,5 +1,5 @@
-require 'logger'
-
+# Class for holding all configuration data, it is accessed by its only instance
+#   in global variable $CFG
 class One2Influx::Config
 
   ##############################################################################
@@ -14,7 +14,7 @@ class One2Influx::Config
   #####################################
   @@one = {
       # Login credentials separated by semicolon
-      credentials: 'onefetcher:asdfasdf',
+      credentials: 'user:password',
 
       # XML_RPC endpoint where OpenNebula is listening
       endpoint: 'http://localhost:2633/RPC2'
@@ -23,23 +23,32 @@ class One2Influx::Config
   # InfluxDB connection configuration
   ###################################
   @@influx = {
-      authenticate: true,
-      user: 'test_admin',
-      pass: 'test_admin',
+      # Whether to use basic authentication
+      authenticate: false,
 
-      # InfluxDB HTTP API endpoint hostname or IP
-      host: 'localhost',
-      # InfluxDB HTTP API endpoint port
-      port: 8086,
+      # Login credentials separated by semicolon
+      credentials: 'user:password',
 
-      # Database name. If left blank UUID without dashes of root partition of
-      # current machine will be used as name
+      # InfluxDB HTTP API endpoint
+      endpoint: 'http://localhost:8086',
+
+      # Database name
       database: 'test',
 
       # Retention policy for records with the smallest granularity
       # you have to create retention policy manually if you want to change
       # this one
       policy: 'ten_hours'
+  }
+
+  # Logging configuration
+  #######################
+  @@log = {
+      # Level to use. Logger::INFO, Logger::WARN, Logger::ERROR are supported
+      level: Logger::INFO,
+
+      # Path to log file
+      path: ''
   }
 
   # Configuration of metrics and tags to be stored to InfluxDB
@@ -90,7 +99,7 @@ class One2Influx::Config
               #'NET_RX'  # [B] received from the network
           ],
           cust_metrics: [
-              'MEMORY_PERC' # Computes percentage usage of memory for VM
+              #'MEMORY_PERC' # Computes percentage usage of memory for VM
           ]
 
       },
@@ -142,22 +151,12 @@ class One2Influx::Config
       }
   }
 
-  # Logging configuration
-  #######################
-  @@log = {
-      # Level to use. Logger::INFO, Logger::WARN, Logger::ERROR are supported
-      level: Logger::INFO,
-
-      # Path to log file
-      path: ''
-  }
-
   ##############################################################################
   ## DO NOT EDIT BELOW THIS LINE                                              ##
   ##############################################################################
 
   attr_reader :sec_interval
-  DEV_UUIDS = '/dev/disk/by-uuid/'
+  # @@fetch_interval in seconds
   @sec_interval = 0
 
   public
@@ -174,7 +173,8 @@ class One2Influx::Config
     @@storage
   end
 
-  # TODO
+  # Initializes logging, converts fetch interval from human readable form,
+  #   adds tag ID to all metrics and converts VM's tags from human readable form
   def initialize
     log_path = @@log[:path] + 'one2influx.log'
     begin
@@ -207,40 +207,6 @@ class One2Influx::Config
     $LOG.info 'Connection with ONE verified.'
 
     return true
-  end
-
-  # Returns UUID of root partition of this machine
-  def get_uuid
-    unless (File.exist? '/etc/fstab') || (File.readable? '/etc/fstab')
-      raise 'Unable to read file /etc/fstab.'
-    end
-
-    fs = nil
-
-    File.open('/etc/fstab', 'r') do |f|
-      f.each_line do |line|
-        line = line.gsub(/\s+/, ' ').split(' ')
-        if line.length > 1 && line[1] == '/' then
-          fs = File.basename line[0]
-          break
-        end
-      end
-    end
-
-    raise 'Unable to locate root file system.' if fs.nil?
-    raise "Unable to locate folder #{DEV_UUIDS}." unless Dir.exist? DEV_UUIDS
-    uuid = nil
-
-    Dir.foreach(DEV_UUIDS) do |f|
-      full_path = DEV_UUIDS + f
-      if (File.symlink? full_path) && (File.basename(File.readlink(full_path)) == fs)
-        uuid = f
-      end
-    end
-
-    raise 'Unable to get root system UUID.' if uuid.nil?
-
-    return uuid
   end
 
   private

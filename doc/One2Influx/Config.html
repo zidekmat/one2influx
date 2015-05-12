@@ -1,0 +1,814 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: One2Influx::Config
+  
+    &mdash; Documentation by YARD 0.8.7.4
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!One2Influx/Config.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (C)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../One2Influx.html" title="One2Influx (module)">One2Influx</a></span></span>
+     &raquo; 
+    <span class="title">Config</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: One2Influx::Config
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">One2Influx::Config</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/one2influx/config.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Class for holding all configuration data, it is accessed by its only
+instance</p>
+
+<pre class="code ruby"><code class="ruby">in global variable $CFG</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="fetch_interval-classvariable" class="">@@fetch_interval =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Allowed values are number of seconds, minutes, hours</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_separated'>separated</span> <span class='id identifier rubyid_by'>by</span> <span class='id identifier rubyid_space'>space</span>
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>30 seconds</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="one-classvariable" class="">@@one =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>OpenNebula connection configuration</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+    <span class='comment'># Login credentials separated by semicolon
+</span>    <span class='label'>credentials:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>onefetcher:asdfasdf</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+     <span class='comment'># XML_RPC endpoint where OpenNebula is listening
+</span>    <span class='label'>endpoint:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>http://localhost:2633/RPC2</span><span class='tstring_end'>&#39;</span></span>
+<span class='rbrace'>}</span></pre></dd>
+      
+        <dt id="influx-classvariable" class="">@@influx =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>InfluxDB connection configuration</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+    <span class='comment'># Whether to use basic authentication
+</span>    <span class='label'>authenticate:</span> <span class='kw'>false</span><span class='comma'>,</span>
+     <span class='comment'># Login credentials separated by semicolon
+</span>    <span class='label'>credentials:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>test_admin:test_admin</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+     <span class='comment'># InfluxDB HTTP API endpoint
+</span>    <span class='label'>endpoint:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>http://localhost:8086</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+     <span class='comment'># Database name
+</span>    <span class='label'>database:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>test</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+     <span class='comment'># Retention policy for records with the smallest granularity
+</span>    <span class='comment'># you have to create retention policy manually if you want to change
+</span>    <span class='comment'># this one
+</span>    <span class='label'>policy:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ten_hours</span><span class='tstring_end'>&#39;</span></span>
+<span class='rbrace'>}</span></pre></dd>
+      
+        <dt id="storage-classvariable" class="">@@storage =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Configuration of metrics and tags to be stored to InfluxDB Comment or
+uncomment metrics, tags or whole object depending on what you want to
+store.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+    <span class='comment'># Host
+</span>    <span class='label'>host:</span> <span class='lbrace'>{</span>
+        <span class='label'>tags:</span> <span class='lbrace'>{</span>
+            <span class='label'>HOST_NAME:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>NAME</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+            <span class='label'>CLUSTER_ID:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_ID</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+            <span class='label'>CLUSTER_NAME:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+            <span class='label'>DSS_IDS:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>  <span class='comment'># [string] IDs of datastores that this host uses
+</span>                         <span class='comment'>#  encoded in form ,,ID_1,,ID_2...,,
+</span>        <span class='rbrace'>}</span><span class='comma'>,</span>
+        <span class='label'>metrics:</span> <span class='lbracket'>[</span>
+            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>MEM_USAGE</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='comment'># [kB] memory requested by VMs
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>MAX_MEM</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>   <span class='comment'># [kB] total memory available in host
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>FREE_MEM</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>  <span class='comment'># [kB] free memory returned by probes
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>USED_MEM</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>  <span class='comment'># [kB] memory used by all host processes over MAX_MEM
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CPU_USAGE</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='comment'># [%] usage of CPU calculated by ONE as the summatory
+</span>                         <span class='comment'>#     CPU requested by all VMs running in the host
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>MAX_CPU</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>   <span class='comment'># [%] total CPU in the host (number of cores * 100)
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>FREE_CPU</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>  <span class='comment'># [%] free CPU as returned by the probes
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>USED_CPU</span><span class='tstring_end'>&#39;</span></span>   <span class='comment'># [%] CPU used by all host processes over a total
+</span>                         <span class='comment'>#     of # cores * 100
+</span>        <span class='rbracket'>]</span><span class='comma'>,</span>
+        <span class='label'>cust_metrics:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='comment'># Virtual machine
+</span>    <span class='label'>vm:</span>   <span class='lbrace'>{</span>
+        <span class='label'>tags:</span> <span class='lbrace'>{</span>
+            <span class='label'>CLUSTER_ID:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_ID</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+            <span class='label'>CLUSTER_NAME:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_NAME</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+            <span class='label'>HOST_ID:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>HOST_ID</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+            <span class='label'>HOST_NAME:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>HOST_NAME</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+            <span class='label'>VM_NAME:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>NAME</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+            <span class='label'>UID:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>UID</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>       <span class='comment'># [int] user&#39;s ID
+</span>            <span class='label'>GID:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>GID</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>       <span class='comment'># [int] group&#39;s ID
+</span>            <span class='label'>UNAME:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>UNAME</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>   <span class='comment'># [string] user&#39;s name
+</span>            <span class='label'>GNAME:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>GNAME</span><span class='tstring_end'>&#39;</span></span>    <span class='comment'># [string] group&#39;s name
+</span>        <span class='rbrace'>}</span><span class='comma'>,</span>
+        <span class='label'>metrics:</span> <span class='lbracket'>[</span>
+            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>MEMORY</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='comment'># [kB] memory consumption
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CPU</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>    <span class='comment'># [%] 1 VCPU consumed (two fully consumed cpu is 200)
+</span>            <span class='comment'>#&#39;NET_TX&#39;, # [B] sent to the networ
+</span>            <span class='comment'>#&#39;NET_RX&#39;  # [B] received from the network
+</span>        <span class='rbracket'>]</span><span class='comma'>,</span>
+        <span class='label'>cust_metrics:</span> <span class='lbracket'>[</span>
+            <span class='comment'>#&#39;MEMORY_PERC&#39; # Computes percentage usage of memory for VM
+</span>        <span class='rbracket'>]</span>
+     <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='comment'># Datastore
+</span>    <span class='label'>ds:</span>   <span class='lbrace'>{</span>
+        <span class='label'>tags:</span> <span class='lbrace'>{</span>
+            <span class='label'>DS_NAME:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>NAME</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+            <span class='label'>CLUSTER_ID:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_ID</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+            <span class='label'>CLUSTER_NAME:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+            <span class='label'>TM_MAD:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>TM_MAD</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>  <span class='comment'># [shared|ssh|qcow2|vmfs|ceph|lvm|fs_lvm|dev]
+</span>                               <span class='comment'>#  transfer manager
+</span>            <span class='label'>DS_MAD:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>DS_MAD</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>  <span class='comment'># [fs|vmfs|lvm|ceph|dev] datastore type
+</span>            <span class='label'>UID:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>UID</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>        <span class='comment'># [int] user&#39;s ID
+</span>            <span class='label'>GID:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>GID</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>        <span class='comment'># [int] group&#39;s ID
+</span>            <span class='label'>UNAME:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>UNAME</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>    <span class='comment'># [string] user&#39;s name
+</span>            <span class='label'>GNAME:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>GNAME</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>    <span class='comment'># [string] group&#39;s name
+</span>            <span class='label'>HOSTS_IDS:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>      <span class='comment'># [string] IDs of hosts that are using this
+</span>                               <span class='comment'>#  datastore encoded in form ,,ID_1,,ID_2...,,
+</span>        <span class='rbrace'>}</span><span class='comma'>,</span>
+        <span class='label'>metrics:</span> <span class='lbracket'>[</span>
+            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>TOTAL_MB</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='comment'># [MB] total space available in datastore
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>FREE_MB</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>  <span class='comment'># [MB] free space
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>USED_MB</span><span class='tstring_end'>&#39;</span></span>   <span class='comment'># [MB] used space
+</span>        <span class='rbracket'>]</span><span class='comma'>,</span>
+        <span class='label'>cust_metrics:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='comment'># Cluster
+</span>    <span class='label'>cluster:</span> <span class='lbrace'>{</span>
+        <span class='label'>tags:</span> <span class='lbrace'>{</span>
+            <span class='label'>CLUSTER_NAME:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>NAME</span><span class='tstring_end'>&#39;</span></span>
+        <span class='rbrace'>}</span><span class='comma'>,</span>
+        <span class='label'>metrics:</span> <span class='lbracket'>[</span>
+            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_MEM_USAGE</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='comment'># [kB] memory requested by all VMs in cluster
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_MAX_MEM</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>   <span class='comment'># [kB] total memory available in all hosts
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_FREE_MEM</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>  <span class='comment'># [kB] free memory of all hosts returned
+</span>                                 <span class='comment'>#  by probes
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_USED_MEM</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>  <span class='comment'># [kB] memory used by all processes of all
+</span>                                 <span class='comment'>#  hosts over MAX_MEM
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_CPU_USAGE</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='comment'># [%] usage of CPU calculated by ONE as the
+</span>                                 <span class='comment'>#  sum of CPU requested by all VMs running
+</span>                                 <span class='comment'>#  in the cluster
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_MAX_CPU</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>   <span class='comment'># [%] total CPU in the cluster
+</span>                                 <span class='comment'>#  (number of cores * 100)
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_FREE_CPU</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>  <span class='comment'># [%] free CPU as returned by the probes
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_USED_CPU</span><span class='tstring_end'>&#39;</span></span>   <span class='comment'># [%] CPU used by all processes of all hosts
+</span>                                 <span class='comment'>#  over a total of # cores * 100
+</span>        <span class='rbracket'>]</span><span class='comma'>,</span>
+        <span class='label'>cust_metrics:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='rbrace'>}</span>
+<span class='rbrace'>}</span></pre></dd>
+      
+        <dt id="log-classvariable" class="">@@log =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Logging configuration</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+    <span class='comment'># Level to use. Logger::INFO, Logger::WARN, Logger::ERROR are supported
+</span>    <span class='label'>level:</span> <span class='const'>Logger</span><span class='op'>::</span><span class='const'>INFO</span><span class='comma'>,</span>
+     <span class='comment'># Path to log file
+</span>    <span class='label'>path:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+<span class='rbrace'>}</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#sec_interval-instance_method" title="#sec_interval (instance method)">- (Object) <strong>sec_interval</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>DO NOT EDIT BELOW THIS LINE                                             
+##.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#influx-instance_method" title="#influx (instance method)">- (Object) <strong>influx</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Config) <strong>initialize</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Initializes logging, converts fetch interval from human readable form,  
+adds tag ID to all metrics and converts VM&#39;s tags from human readable
+form.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#is_one_available%3F-instance_method" title="#is_one_available? (instance method)">- (Boolean) <strong>is_one_available?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Checks it is possible to connect to ONE with provided credentials.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#one-instance_method" title="#one (instance method)">- (Object) <strong>one</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Group of getter methods for configuration class variables.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#storage-instance_method" title="#storage (instance method)">- (Object) <strong>storage</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="One2Influx::Config (class)">Config</a></span></tt>) <strong>initialize</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Initializes logging, converts fetch interval from human readable form,</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_adds'>adds</span> <span class='id identifier rubyid_tag'>tag</span> <span class='const'>ID</span> <span class='id identifier rubyid_to'>to</span> <span class='id identifier rubyid_all'>all</span> <span class='id identifier rubyid_metrics'>metrics</span> <span class='kw'>and</span> <span class='id identifier rubyid_converts'>converts</span> <span class='const'>VM</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>s tags from human readable form</span></span></code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/one2influx/config.rb', line 178</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
+  <span class='id identifier rubyid_log_path'>log_path</span> <span class='op'>=</span> <span class='cvar'>@@log</span><span class='lbracket'>[</span><span class='symbol'>:path</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>one2influx.log</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>begin</span>
+    <span class='gvar'>$LOG</span> <span class='op'>=</span> <span class='const'>Logger</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_log_path'>log_path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>daily</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>30</span><span class='rparen'>)</span>
+  <span class='kw'>rescue</span> <span class='const'>Exception</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Unable to create log file. </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='gvar'>$LOG</span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span> <span class='op'>=</span> <span class='cvar'>@@log</span><span class='lbracket'>[</span><span class='symbol'>:level</span><span class='rbracket'>]</span>
+
+  <span class='id identifier rubyid_convert_to_sec'>convert_to_sec</span>
+  <span class='id identifier rubyid_prepare_storage_ids'>prepare_storage_ids</span>
+  <span class='id identifier rubyid_prepare_vm_config'>prepare_vm_config</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="sec_interval-instance_method">
+  
+    - (<tt>Object</tt>) <strong>sec_interval</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>DO NOT EDIT BELOW THIS LINE                                              ##</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+158
+159
+160</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/one2influx/config.rb', line 158</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_sec_interval'>sec_interval</span>
+  <span class='ivar'>@sec_interval</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="influx-instance_method">
+  
+    - (<tt>Object</tt>) <strong>influx</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+168
+169
+170</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/one2influx/config.rb', line 168</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_influx'>influx</span>
+  <span class='cvar'>@@influx</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="is_one_available?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>is_one_available?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Checks it is possible to connect to ONE with provided credentials.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/one2influx/config.rb', line 193</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_is_one_available?'>is_one_available?</span>
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'>OpenNebula</span><span class='op'>::</span><span class='const'>Client</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='cvar'>@@one</span><span class='lbracket'>[</span><span class='symbol'>:credentials</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='cvar'>@@one</span><span class='lbracket'>[</span><span class='symbol'>:endpoint</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>rescue</span> <span class='const'>Exception</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+    <span class='gvar'>$LOG</span><span class='period'>.</span><span class='id identifier rubyid_error'>error</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Unable to connect to ONE with message: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>return</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_version'>version</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_get_version'>get_version</span>
+  <span class='comment'># Try to get ONE version just to check if it&#39;s possible to connect to ONE
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_version'>version</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>OpenNebula</span><span class='op'>::</span><span class='const'>Error</span>
+    <span class='gvar'>$LOG</span><span class='period'>.</span><span class='id identifier rubyid_error'>error</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Unable to find out ONE version with message: </span><span class='tstring_end'>&#39;</span></span><span class='op'>+</span><span class='id identifier rubyid_version'>version</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span>
+    <span class='kw'>return</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+  <span class='gvar'>$LOG</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Connection with ONE verified.</span><span class='tstring_end'>&#39;</span></span>
+
+  <span class='kw'>return</span> <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="one-instance_method">
+  
+    - (<tt>Object</tt>) <strong>one</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Group of getter methods for configuration class variables</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+164
+165
+166</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/one2influx/config.rb', line 164</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_one'>one</span>
+  <span class='cvar'>@@one</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="storage-instance_method">
+  
+    - (<tt>Object</tt>) <strong>storage</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+172
+173
+174</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/one2influx/config.rb', line 172</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_storage'>storage</span>
+  <span class='cvar'>@@storage</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Tue May 12 23:40:12 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.4 (ruby-2.2.2).
+</div>
+
+  </body>
+</html>

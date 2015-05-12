@@ -8,3 +8,4 @@ lib/test_data/
 .idea/
 vendor/
 .bundle/
+.yardoc

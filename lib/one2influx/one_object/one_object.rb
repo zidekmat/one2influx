@@ -1,12 +1,10 @@
-require 'nokogiri'
-require 'opennebula'
-
+# 'Abstract' class for OpenNebula's objects representation
 class One2Influx::OneObject
 
   attr_reader :tags, :metrics, :doc
 
-  # Creates mapping between ONE XML names and InfluxDB names.
-  #
+  # Creates mapping between ONE XML names and InfluxDB storage names.
+  # Loads all tags, metrics and custom metrics from given XML.
   # @param [string] xml representation of OneObject
   # @param [OpenNebula::Client] client connection link to ONE API
   def initialize(xml, client)

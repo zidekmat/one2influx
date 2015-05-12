@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.0.0'
 
 
+  s.add_runtime_dependency 'json', '~> 1.8'
   s.add_runtime_dependency 'opennebula', '~> 4.12'
   s.add_runtime_dependency 'nokogiri', '~> 1.6'
   s.add_development_dependency 'gyoku', '~> 1.3'

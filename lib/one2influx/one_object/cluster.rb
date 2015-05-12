@@ -1,6 +1,4 @@
-require 'nokogiri'
-require 'opennebula'
-
+# Representation of ONE cluster
 class One2Influx::Cluster < ::One2Influx::OneObject
 
   #

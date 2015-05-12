@@ -45,7 +45,7 @@ end
 begin
   influx = ::One2Influx::Influx.new
 rescue Exception => e
-  $LOG.error "Error while getting UUID: #{e.message}"
+  $LOG.error e.message
   $stderr.puts 'Failure, exiting. Check the log file.'
   exit 3
 end

@@ -1,6 +1,4 @@
-require 'nokogiri'
-require 'opennebula'
-
+# Representation of ONE datastore
 class One2Influx::Datastore < ::One2Influx::OneObject
 
   #

@@ -1,6 +1,3 @@
-require 'net/http'
-require 'json'
-
 # Used for storing data to InfluxDB through HTTP API
 class One2Influx::Influx
 
@@ -9,16 +6,15 @@ class One2Influx::Influx
   def initialize
     @authenticate = $CFG.influx[:authenticate]
     if @authenticate
-      @user = $CFG.influx[:user]
-      @pass = $CFG.influx[:pass]
+      creds = $CFG.influx[:credentials].split(':')
+      raise 'InfluxDB credentials have invalid form!' if creds.length != 2
+      @user = creds[0]
+      @pass = creds[1]
     end
-    @host = $CFG.influx[:host]
-    @port = $CFG.influx[:port]
-    if $CFG.influx[:database].empty?
-      @db = $CFG.get_uuid.gsub!('-', '')
-    else
-      @db = $CFG.influx[:database]
-    end
+    uri = URI.parse($CFG.influx[:endpoint])
+    @host = uri.host
+    @port = uri.port
+    @db = $CFG.influx[:database]
     @retention_policy = $CFG.influx[:policy]
   end
 
