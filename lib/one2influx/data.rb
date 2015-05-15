@@ -41,7 +41,7 @@ class One2Influx::Data
     cluster_pool = OpenNebula::ClusterPool.new(@client)
     rc = cluster_pool.info
     raise rc.message if OpenNebula.is_error?(rc)
-#
+
     # Get data from all clusters in the pool
     cluster_pool.each do |one_cluster|
       cluster = ::One2Influx::Cluster.new(one_cluster.to_xml, @client,hosts_xml)

@@ -6,7 +6,7 @@ class One2Influx::Config
   ## EDIT THIS PART IF NECESSARY                                              ##
   ##############################################################################
 
-  # Allowed values are number of seconds, minutes, hours
+  # Data fetch interval. Allowed values are number of seconds, minutes, hours
   #  separated by space
   @@fetch_interval = '30 seconds'
 
@@ -36,8 +36,6 @@ class One2Influx::Config
       database: 'test',
 
       # Retention policy for records with the smallest granularity
-      # you have to create retention policy manually if you want to change
-      # this one
       policy: 'ten_hours'
   }
 
@@ -47,7 +45,8 @@ class One2Influx::Config
       # Level to use. Logger::INFO, Logger::WARN, Logger::ERROR are supported
       level: Logger::INFO,
 
-      # Path to log file
+      # Path to log file, when empty, one2influx.log is written into directory
+      # where the binary is run from
       path: ''
   }
 
@@ -62,6 +61,10 @@ class One2Influx::Config
               HOST_NAME: 'NAME',
               CLUSTER_ID: 'CLUSTER_ID',
               CLUSTER_NAME: 'CLUSTER',
+              #HOST_STATE: 'STATE', # [int] host state
+              #IM_MAD: 'IM_MAD',    # [string] monitoring manager driver
+              #VM_MAD: 'VM_MAD',    # [string] virtualization manager driver
+              #VN_MAD: 'VN_MAD',    # [string] virtual network manager driver
               DSS_IDS: ''  # [string] IDs of datastores that this host uses
                            #  encoded in form ,,ID_1,,ID_2...,,
           },
@@ -87,10 +90,12 @@ class One2Influx::Config
               HOST_ID: 'HOST_ID',
               HOST_NAME: 'HOST_NAME',
               VM_NAME: 'NAME',
-              UID: 'UID',       # [int] user's ID
-              GID: 'GID',       # [int] group's ID
-              UNAME: 'UNAME',   # [string] user's name
-              GNAME: 'GNAME'    # [string] group's name
+              UID: 'UID',            # [int] user's ID
+              GID: 'GID',            # [int] group's ID
+              UNAME: 'UNAME',        # [string] user's name
+              GNAME: 'GNAME',        # [string] group's name
+              #VM_STATE: 'STATE',     # [int] virtual machine state
+              #LCM_STATE: 'LCM_STATE' # [int] substates for ACTIVE state
           },
           metrics: [
               'MEMORY', # [kB] memory consumption

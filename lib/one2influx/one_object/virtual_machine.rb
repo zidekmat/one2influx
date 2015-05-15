@@ -35,7 +35,7 @@ class One2Influx::VirtualMachine < ::One2Influx::OneObject
 
     doc = Nokogiri::XML(template.to_xml)
     ni_element = doc.xpath('//TEMPLATE/MEMORY').first
-    puts @metrics
+
     if ni_element.nil? || @metrics[:MEMORY].nil?
       $LOG.error "Unable to get metric 'MEMORY_PERC' in #{self.class}."
       return

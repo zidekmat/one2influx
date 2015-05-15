@@ -43,7 +43,7 @@ class One2Influx::Influx
       req.body = payload.to_json
       response = make_request(req)
 
-      if (not response.nil?) && (response.code != '200')
+      if (not response.nil?) && (response.code != '204')
         raise 'Failed to store data to InfluxDB. Received HTTP code ' +
                   "#{response.code}, body: #{response.body}"
       end
