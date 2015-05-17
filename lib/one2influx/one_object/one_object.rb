@@ -47,7 +47,8 @@ class One2Influx::OneObject
     @tag_names.each do |influx_name, one_name|
       ni_element = @doc.css(one_name).first
       if ni_element.nil?
-        $LOG.error "Unable to get tag '#{one_name}' in #{self.class}."
+        $LOG.error "Unable to get tag '#{one_name}' in #{self.class}." +
+            'XML parsing error.'
       else
         @tags[influx_name.to_sym] = ni_element.content
       end
@@ -58,7 +59,8 @@ class One2Influx::OneObject
     @metric_names.each do |metric|
       ni_element = @doc.css(metric).first
       if ni_element.nil?
-        $LOG.error "Unable to get metric '#{metric}' in #{self.class}."
+        $LOG.error "Unable to get metric '#{metric}' in #{self.class}." +
+            'XML parsing error.'
       else
         @metrics[metric.to_sym] = ni_element.content
       end
@@ -67,7 +69,11 @@ class One2Influx::OneObject
 
   def init_custom_metrics
     @custom_metric_names.each do |metric|
-      @metrics[metric.to_sym] = self.send("get_#{metric.to_s}")
+      begin
+        @metrics[metric.to_sym] = self.send("get_#{metric.to_s}")
+      rescue Exception => e
+        $LOG.error "Unable to get metric '#{metric}'. #{e.message}"
+      end
     end
   end
 end

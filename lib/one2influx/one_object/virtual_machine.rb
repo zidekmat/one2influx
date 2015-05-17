@@ -19,6 +19,8 @@ class One2Influx::VirtualMachine < ::One2Influx::OneObject
     super(xml, client)
   end
 
+  private
+
   # Computes percentage usage of memory for virtual machine.
   #  Values might go over 1.0 as there is an overhead
   # @return [float] current usage over max usage
@@ -37,8 +39,7 @@ class One2Influx::VirtualMachine < ::One2Influx::OneObject
     ni_element = doc.xpath('//TEMPLATE/MEMORY').first
 
     if ni_element.nil? || @metrics[:MEMORY].nil?
-      $LOG.error "Unable to get metric 'MEMORY_PERC' in #{self.class}."
-      return
+      raise 'Unable to parse VM template.'
     end
 
     # Convert //TEMPLATE/MEMORY from MB to kB as //VM/CPU is in kB

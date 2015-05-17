@@ -14,7 +14,7 @@ class One2Influx::Config
   #####################################
   @@one = {
       # Login credentials separated by semicolon
-      credentials: 'user:password',
+      credentials: 'oneadmin:opennebula',
 
       # XML_RPC endpoint where OpenNebula is listening
       endpoint: 'http://localhost:2633/RPC2'
@@ -71,16 +71,23 @@ class One2Influx::Config
           metrics: [
               'MEM_USAGE', # [kB] memory requested by VMs
               'MAX_MEM',   # [kB] total memory available in host
-              'FREE_MEM',  # [kB] free memory returned by probes
-              'USED_MEM',  # [kB] memory used by all host processes over MAX_MEM
-              'CPU_USAGE', # [%] usage of CPU calculated by ONE as the summatory
+              'FREE_MEM',  # [kB] free memory in host, MAX_MEM - USED_MEM
+              'USED_MEM',  # [kB] used memory in host -(buffers+cache)
+              'CPU_USAGE', # [%] usage of CPU calculated by ONE as the sum of
                            #     CPU requested by all VMs running in the host
               'MAX_CPU',   # [%] total CPU in the host (number of cores * 100)
               'FREE_CPU',  # [%] free CPU as returned by the probes
               'USED_CPU'   # [%] CPU used by all host processes over a total
                            #     of # cores * 100
           ],
-          cust_metrics: []
+          cust_metrics: [
+              #'HOST_MEM_ALOC',  # [%] MEM_USAGE / MAX_MEM
+              #'HOST_MEM_LOAD',  # [%] USED_MEM / MAX_MEM
+              #'HOST_MEM_WASTE', # [] HOST_MEM_ALOC / HOST_MEM_LOAD
+              #'HOST_CPU_ALOC',  # [%] CPU_USAGE / MAX_CPU
+              #'HOST_CPU_LOAD',  # [%] USED_CPU / MAX_CPU
+              #'HOST_CPU_WASTE', # [] HOST_CPU_ALOC / HOST_CPU_LOAD
+          ]
       },
       # Virtual machine
       vm:   {
@@ -129,7 +136,9 @@ class One2Influx::Config
               'FREE_MB',  # [MB] free space
               'USED_MB'   # [MB] used space
           ],
-          cust_metrics: []
+          cust_metrics: [
+              #'DS_LOAD'   # [%] USED_MB / TOTAL_MB
+          ]
       },
       # Cluster
       cluster: {
@@ -137,22 +146,23 @@ class One2Influx::Config
               CLUSTER_NAME: 'NAME'
           },
           metrics: [
-              'CLUSTER_MEM_USAGE', # [kB] memory requested by all VMs in cluster
-              'CLUSTER_MAX_MEM',   # [kB] total memory available in all hosts
-              'CLUSTER_FREE_MEM',  # [kB] free memory of all hosts returned
-                                   #  by probes
-              'CLUSTER_USED_MEM',  # [kB] memory used by all processes of all
-                                   #  hosts over MAX_MEM
-              'CLUSTER_CPU_USAGE', # [%] usage of CPU calculated by ONE as the
-                                   #  sum of CPU requested by all VMs running
-                                   #  in the cluster
-              'CLUSTER_MAX_CPU',   # [%] total CPU in the cluster
-                                   #  (number of cores * 100)
-              'CLUSTER_FREE_CPU',  # [%] free CPU as returned by the probes
-              'CLUSTER_USED_CPU'   # [%] CPU used by all processes of all hosts
-                                   #  over a total of # cores * 100
+              'CLUSTER_MEM_USAGE', # [kB] sum of MEM_USAGE for whole cluster
+              'CLUSTER_MAX_MEM',   # [kB] sum of MAX_MEM for whole cluster
+              'CLUSTER_FREE_MEM',  # [kB] sum of FREE_MEM for whole cluster
+              'CLUSTER_USED_MEM',  # [kB] sum of USED_MEM for whole cluster
+              'CLUSTER_CPU_USAGE', # [%] sum of CPU_USAGE for whole cluster
+              'CLUSTER_MAX_CPU',   # [%] sum of MAX_CPU for whole cluster
+              'CLUSTER_FREE_CPU',  # [%] sum of FREE_CPU for whole cluster
+              'CLUSTER_USED_CPU'   # [%] sum of USED_CPU for whole cluster
           ],
-          cust_metrics: []
+          cust_metrics: [
+              #'CLUSTER_MEM_ALOC',  # [%] CLUSTER_MEM_USAGE / CLUSTER_MAX_MEM
+              #'CLUSTER_MEM_LOAD',  # [%]CLUSTER_USED_MEM / CLUSTER_MAX_MEM
+              #'CLUSTER_MEM_WASTE', # [] CLUSTER_MEM_ALOC / CLUSTER_MEM_LOAD
+              #'CLUSTER_CPU_ALOC',  # [%] CLUSTER_CPU_USAGE / CLUSTER_MAX_CPU
+              #'CLUSTER_CPU_LOAD',  # [%] CLUSTER_USED_CPU / CLUSTER_MAX_CPU
+              #'CLUSTER_CPU_WASTE', # [] CLUSTER_CPU_ALOC / CLUSTER_CPU_LOAD
+          ]
       }
   }
 

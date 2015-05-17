@@ -4,6 +4,7 @@ begin
   require 'rubygems'
 rescue Exception
   $stderr.puts 'Failed to load rubygems!'
+  exit 1
 end
 
 # add local dirs to load path if necessary

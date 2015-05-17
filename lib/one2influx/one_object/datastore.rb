@@ -27,4 +27,17 @@ class One2Influx::Datastore < ::One2Influx::OneObject
       @tags[:HOSTS_IDS] = ',,' + hosts.join(',,') + ',,'
     end
   end
+
+  private
+
+  # @raise [Exception] calculation error
+  # @return [float] USED_MB / TOTAL_MB
+  def get_DS_LOAD
+    raise 'USED_MB is missing.' unless @metrics.has_key? :USED_MB
+    raise 'TOTAL_MB is missing.' unless @metrics.has_key? :TOTAL_MB
+    raise 'TOTAL_MB is 0.' if @metrics[:TOTAL_MB] == '0'
+
+    (@metrics[:USED_MB].to_f / @metrics[:TOTAL_MB].to_f).round(2)
+  end
+
 end

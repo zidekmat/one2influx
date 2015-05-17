@@ -17,8 +17,8 @@ class One2Influx::Data
     raise rc.message if OpenNebula.is_error?(rc)
 
     # Get data from all hosts in the pool
-    hosts_xml = {} # XML of all hosts, passed to theirs cluster
-    oo_hosts = []  # array of all instances of OneObject::Host
+    oo_hosts = {}  # hash of all instances of OneObject::Host
+                   #   in form {ID => host}
     host_pool.each do |one_host|
       host = ::One2Influx::Host.new(one_host.to_xml, @client)
       # Get data from all VMs belonging to current host
@@ -31,8 +31,7 @@ class One2Influx::Data
         @points += vm.serialize_as_points
         counter[:vms] += 1
       end
-      hosts_xml[host.tags[:HOST_ID]] = one_host.to_xml
-      oo_hosts << host
+      oo_hosts[host.tags[:HOST_ID].to_sym] = host
       @points += host.serialize_as_points
       counter[:hosts] += 1
     end
@@ -44,7 +43,7 @@ class One2Influx::Data
 
     # Get data from all clusters in the pool
     cluster_pool.each do |one_cluster|
-      cluster = ::One2Influx::Cluster.new(one_cluster.to_xml, @client,hosts_xml)
+      cluster = ::One2Influx::Cluster.new(one_cluster.to_xml, @client, oo_hosts)
       @points += cluster.serialize_as_points
       counter[:clusters] += 1
     end
@@ -58,7 +57,7 @@ class One2Influx::Data
     # It has form {DS_ID_1: [HOST_ID_1, HOST_ID_2, ...], ...}
     ds_has_hosts = {}
     if $CFG.storage[:ds][:tags].has_key? :HOSTS_IDS
-      oo_hosts.each do |host|
+      oo_hosts.each do |id, host|
         host.datastores.each do |ds|
           ds_has_hosts[ds] ||= []
           ds_has_hosts[ds] << host.tags[:HOST_ID]
