@@ -67,15 +67,17 @@
 <p>One2influx is small ruby daemon for getting monitoring data from <a
 href="http://docs.opennebula.org/4.12/integration/system_interfaces/api.html">OpenNebula’s
 XML-RPC API</a> and storing it to <a
-href="http://influxdb.com/">InfluxDB</a>.</p>
+href="http://influxdb.com/">InfluxDB</a>. It needs Ruby 2+ to run.</p>
 
 <h3 id="label-Installation">Installation</h3>
 
-<p>For Debian 8: <code>bash $ sudo apt-get install ruby ruby-dev
-libghc-zlib-dev -y $ git clone https://github.com/zidekmat/one2influx.git $
-cd one2influx &amp;&amp; gem install bundle &amp;&amp; bundle install
-</code> Then just set up your connection with ONE and InfluxDB and run
-<code>bash $ ./bin/one2influx &amp; </code></p>
+<p>For Debian 8, install it as local gem: <code>bash $ sudo apt-get install
+ruby ruby-dev libghc-zlib-dev -y $ gem install one2influx </code> or build
+it on your own: <code> $ sudo apt-get install ruby ruby-dev libghc-zlib-dev
+-y $ git clone https://github.com/zidekmat/one2influx.git $ cd one2influx
+&amp;&amp; gem install bundle &amp;&amp; bundle install </code> Then just
+set up your connection with ONE and InfluxDB and run <code>bash $
+one2influx &amp; </code></p>
 
 <h3 id="label-Settings">Settings</h3>
 
@@ -92,7 +94,7 @@ testing XML data that can be modified in
 </div></div>
 
     <div id="footer">
-  Generated on Tue May 12 23:40:12 2015 by
+  Generated on Tue May 19 21:38:48 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.4 (ruby-2.2.2).
 </div>

@@ -122,7 +122,7 @@ instance</p>
           <div class="docstring">
   <div class="discussion">
     
-<p>Allowed values are number of seconds, minutes, hours</p>
+<p>Data fetch interval. Allowed values are number of seconds, minutes, hours</p>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_separated'>separated</span> <span class='id identifier rubyid_by'>by</span> <span class='id identifier rubyid_space'>space</span>
 </code></pre>
@@ -153,7 +153,7 @@ instance</p>
         </dt>
         <dd><pre class="code"><span class='lbrace'>{</span>
     <span class='comment'># Login credentials separated by semicolon
-</span>    <span class='label'>credentials:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>onefetcher:asdfasdf</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+</span>    <span class='label'>credentials:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>oneadmin:opennebula</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
      <span class='comment'># XML_RPC endpoint where OpenNebula is listening
 </span>    <span class='label'>endpoint:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>http://localhost:2633/RPC2</span><span class='tstring_end'>&#39;</span></span>
 <span class='rbrace'>}</span></pre></dd>
@@ -176,15 +176,35 @@ instance</p>
     <span class='comment'># Whether to use basic authentication
 </span>    <span class='label'>authenticate:</span> <span class='kw'>false</span><span class='comma'>,</span>
      <span class='comment'># Login credentials separated by semicolon
-</span>    <span class='label'>credentials:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>test_admin:test_admin</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+</span>    <span class='label'>credentials:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>user:password</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
      <span class='comment'># InfluxDB HTTP API endpoint
 </span>    <span class='label'>endpoint:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>http://localhost:8086</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
      <span class='comment'># Database name
 </span>    <span class='label'>database:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>test</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
      <span class='comment'># Retention policy for records with the smallest granularity
-</span>    <span class='comment'># you have to create retention policy manually if you want to change
-</span>    <span class='comment'># this one
 </span>    <span class='label'>policy:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ten_hours</span><span class='tstring_end'>&#39;</span></span>
+<span class='rbrace'>}</span></pre></dd>
+      
+        <dt id="log-classvariable" class="">@@log =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Logging configuration</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+    <span class='comment'># Level to use. Logger::INFO, Logger::WARN, Logger::ERROR are supported
+</span>    <span class='label'>level:</span> <span class='const'>Logger</span><span class='op'>::</span><span class='const'>INFO</span><span class='comma'>,</span>
+     <span class='comment'># Path to log file, when empty, one2influx.log is written into directory
+</span>    <span class='comment'># where the binary is run from
+</span>    <span class='label'>path:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
 <span class='rbrace'>}</span></pre></dd>
       
         <dt id="storage-classvariable" class="">@@storage =
@@ -210,22 +230,33 @@ store.</p>
             <span class='label'>HOST_NAME:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>NAME</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
             <span class='label'>CLUSTER_ID:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_ID</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
             <span class='label'>CLUSTER_NAME:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-            <span class='label'>DSS_IDS:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>  <span class='comment'># [string] IDs of datastores that this host uses
+            <span class='comment'>#HOST_STATE: &#39;STATE&#39;, # [int] host state
+</span>            <span class='comment'>#IM_MAD: &#39;IM_MAD&#39;,    # [string] monitoring manager driver
+</span>            <span class='comment'>#VM_MAD: &#39;VM_MAD&#39;,    # [string] virtualization manager driver
+</span>            <span class='comment'>#VN_MAD: &#39;VN_MAD&#39;,    # [string] virtual network manager driver
+</span>            <span class='label'>DSS_IDS:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>  <span class='comment'># [string] IDs of datastores that this host uses
 </span>                         <span class='comment'>#  encoded in form ,,ID_1,,ID_2...,,
 </span>        <span class='rbrace'>}</span><span class='comma'>,</span>
         <span class='label'>metrics:</span> <span class='lbracket'>[</span>
             <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>MEM_USAGE</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='comment'># [kB] memory requested by VMs
 </span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>MAX_MEM</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>   <span class='comment'># [kB] total memory available in host
-</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>FREE_MEM</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>  <span class='comment'># [kB] free memory returned by probes
-</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>USED_MEM</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>  <span class='comment'># [kB] memory used by all host processes over MAX_MEM
-</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CPU_USAGE</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='comment'># [%] usage of CPU calculated by ONE as the summatory
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>FREE_MEM</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>  <span class='comment'># [kB] free memory in host, MAX_MEM - USED_MEM
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>USED_MEM</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>  <span class='comment'># [kB] used memory in host -(buffers+cache)
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CPU_USAGE</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='comment'># [%] usage of CPU calculated by ONE as the sum of
 </span>                         <span class='comment'>#     CPU requested by all VMs running in the host
 </span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>MAX_CPU</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>   <span class='comment'># [%] total CPU in the host (number of cores * 100)
 </span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>FREE_CPU</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>  <span class='comment'># [%] free CPU as returned by the probes
 </span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>USED_CPU</span><span class='tstring_end'>&#39;</span></span>   <span class='comment'># [%] CPU used by all host processes over a total
 </span>                         <span class='comment'>#     of # cores * 100
 </span>        <span class='rbracket'>]</span><span class='comma'>,</span>
-        <span class='label'>cust_metrics:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='label'>cust_metrics:</span> <span class='lbracket'>[</span>
+            <span class='comment'>#&#39;HOST_MEM_ALOC&#39;,  # [%] MEM_USAGE / MAX_MEM
+</span>            <span class='comment'>#&#39;HOST_MEM_LOAD&#39;,  # [%] USED_MEM / MAX_MEM
+</span>            <span class='comment'>#&#39;HOST_MEM_WASTE&#39;, # [] HOST_MEM_ALOC / HOST_MEM_LOAD
+</span>            <span class='comment'>#&#39;HOST_CPU_ALOC&#39;,  # [%] CPU_USAGE / MAX_CPU
+</span>            <span class='comment'>#&#39;HOST_CPU_LOAD&#39;,  # [%] USED_CPU / MAX_CPU
+</span>            <span class='comment'>#&#39;HOST_CPU_WASTE&#39;, # [] HOST_CPU_ALOC / HOST_CPU_LOAD
+</span>        <span class='rbracket'>]</span>
     <span class='rbrace'>}</span><span class='comma'>,</span>
     <span class='comment'># Virtual machine
 </span>    <span class='label'>vm:</span>   <span class='lbrace'>{</span>
@@ -235,10 +266,12 @@ store.</p>
             <span class='label'>HOST_ID:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>HOST_ID</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
             <span class='label'>HOST_NAME:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>HOST_NAME</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
             <span class='label'>VM_NAME:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>NAME</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-            <span class='label'>UID:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>UID</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>       <span class='comment'># [int] user&#39;s ID
-</span>            <span class='label'>GID:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>GID</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>       <span class='comment'># [int] group&#39;s ID
-</span>            <span class='label'>UNAME:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>UNAME</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>   <span class='comment'># [string] user&#39;s name
-</span>            <span class='label'>GNAME:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>GNAME</span><span class='tstring_end'>&#39;</span></span>    <span class='comment'># [string] group&#39;s name
+            <span class='label'>UID:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>UID</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>            <span class='comment'># [int] user&#39;s ID
+</span>            <span class='label'>GID:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>GID</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>            <span class='comment'># [int] group&#39;s ID
+</span>            <span class='label'>UNAME:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>UNAME</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>        <span class='comment'># [string] user&#39;s name
+</span>            <span class='label'>GNAME:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>GNAME</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>        <span class='comment'># [string] group&#39;s name
+</span>            <span class='comment'>#VM_STATE: &#39;STATE&#39;,     # [int] virtual machine state
+</span>            <span class='comment'>#LCM_STATE: &#39;LCM_STATE&#39; # [int] substates for ACTIVE state
 </span>        <span class='rbrace'>}</span><span class='comma'>,</span>
         <span class='label'>metrics:</span> <span class='lbracket'>[</span>
             <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>MEMORY</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='comment'># [kB] memory consumption
@@ -271,7 +304,9 @@ store.</p>
 </span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>FREE_MB</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>  <span class='comment'># [MB] free space
 </span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>USED_MB</span><span class='tstring_end'>&#39;</span></span>   <span class='comment'># [MB] used space
 </span>        <span class='rbracket'>]</span><span class='comma'>,</span>
-        <span class='label'>cust_metrics:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='label'>cust_metrics:</span> <span class='lbracket'>[</span>
+            <span class='comment'>#&#39;DS_LOAD&#39;   # [%] USED_MB / TOTAL_MB
+</span>        <span class='rbracket'>]</span>
     <span class='rbrace'>}</span><span class='comma'>,</span>
     <span class='comment'># Cluster
 </span>    <span class='label'>cluster:</span> <span class='lbrace'>{</span>
@@ -279,44 +314,24 @@ store.</p>
             <span class='label'>CLUSTER_NAME:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>NAME</span><span class='tstring_end'>&#39;</span></span>
         <span class='rbrace'>}</span><span class='comma'>,</span>
         <span class='label'>metrics:</span> <span class='lbracket'>[</span>
-            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_MEM_USAGE</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='comment'># [kB] memory requested by all VMs in cluster
-</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_MAX_MEM</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>   <span class='comment'># [kB] total memory available in all hosts
-</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_FREE_MEM</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>  <span class='comment'># [kB] free memory of all hosts returned
-</span>                                 <span class='comment'>#  by probes
-</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_USED_MEM</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>  <span class='comment'># [kB] memory used by all processes of all
-</span>                                 <span class='comment'>#  hosts over MAX_MEM
-</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_CPU_USAGE</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='comment'># [%] usage of CPU calculated by ONE as the
-</span>                                 <span class='comment'>#  sum of CPU requested by all VMs running
-</span>                                 <span class='comment'>#  in the cluster
-</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_MAX_CPU</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>   <span class='comment'># [%] total CPU in the cluster
-</span>                                 <span class='comment'>#  (number of cores * 100)
-</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_FREE_CPU</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>  <span class='comment'># [%] free CPU as returned by the probes
-</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_USED_CPU</span><span class='tstring_end'>&#39;</span></span>   <span class='comment'># [%] CPU used by all processes of all hosts
-</span>                                 <span class='comment'>#  over a total of # cores * 100
+            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_MEM_USAGE</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='comment'># [kB] sum of MEM_USAGE for whole cluster
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_MAX_MEM</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>   <span class='comment'># [kB] sum of MAX_MEM for whole cluster
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_FREE_MEM</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>  <span class='comment'># [kB] sum of FREE_MEM for whole cluster
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_USED_MEM</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>  <span class='comment'># [kB] sum of USED_MEM for whole cluster
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_CPU_USAGE</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='comment'># [%] sum of CPU_USAGE for whole cluster
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_MAX_CPU</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>   <span class='comment'># [%] sum of MAX_CPU for whole cluster
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_FREE_CPU</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>  <span class='comment'># [%] sum of FREE_CPU for whole cluster
+</span>            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CLUSTER_USED_CPU</span><span class='tstring_end'>&#39;</span></span>   <span class='comment'># [%] sum of USED_CPU for whole cluster
 </span>        <span class='rbracket'>]</span><span class='comma'>,</span>
-        <span class='label'>cust_metrics:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='label'>cust_metrics:</span> <span class='lbracket'>[</span>
+            <span class='comment'>#&#39;CLUSTER_MEM_ALOC&#39;,  # [%] CLUSTER_MEM_USAGE / CLUSTER_MAX_MEM
+</span>            <span class='comment'>#&#39;CLUSTER_MEM_LOAD&#39;,  # [%]CLUSTER_USED_MEM / CLUSTER_MAX_MEM
+</span>            <span class='comment'>#&#39;CLUSTER_MEM_WASTE&#39;, # [] CLUSTER_MEM_ALOC / CLUSTER_MEM_LOAD
+</span>            <span class='comment'>#&#39;CLUSTER_CPU_ALOC&#39;,  # [%] CLUSTER_CPU_USAGE / CLUSTER_MAX_CPU
+</span>            <span class='comment'>#&#39;CLUSTER_CPU_LOAD&#39;,  # [%] CLUSTER_USED_CPU / CLUSTER_MAX_CPU
+</span>            <span class='comment'>#&#39;CLUSTER_CPU_WASTE&#39;, # [] CLUSTER_CPU_ALOC / CLUSTER_CPU_LOAD
+</span>        <span class='rbracket'>]</span>
     <span class='rbrace'>}</span>
-<span class='rbrace'>}</span></pre></dd>
-      
-        <dt id="log-classvariable" class="">@@log =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Logging configuration</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
-        </dt>
-        <dd><pre class="code"><span class='lbrace'>{</span>
-    <span class='comment'># Level to use. Logger::INFO, Logger::WARN, Logger::ERROR are supported
-</span>    <span class='label'>level:</span> <span class='const'>Logger</span><span class='op'>::</span><span class='const'>INFO</span><span class='comma'>,</span>
-     <span class='comment'># Path to log file
-</span>    <span class='label'>path:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
 <span class='rbrace'>}</span></pre></dd>
       
     </dl>
@@ -525,22 +540,22 @@ form.</p>
       <pre class="lines">
 
 
-178
-179
-180
-181
-182
-183
-184
-185
-186
-187
-188
-189
-190</pre>
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/one2influx/config.rb', line 178</span>
+      <pre class="code"><span class="info file"># File 'lib/one2influx/config.rb', line 193</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='id identifier rubyid_log_path'>log_path</span> <span class='op'>=</span> <span class='cvar'>@@log</span><span class='lbracket'>[</span><span class='symbol'>:path</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>one2influx.log</span><span class='tstring_end'>&#39;</span></span>
@@ -593,12 +608,12 @@ form.</p>
       <pre class="lines">
 
 
-158
-159
-160</pre>
+173
+174
+175</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/one2influx/config.rb', line 158</span>
+      <pre class="code"><span class="info file"># File 'lib/one2influx/config.rb', line 173</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sec_interval'>sec_interval</span>
   <span class='ivar'>@sec_interval</span>
@@ -630,12 +645,12 @@ form.</p>
       <pre class="lines">
 
 
-168
-169
-170</pre>
+183
+184
+185</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/one2influx/config.rb', line 168</span>
+      <pre class="code"><span class="info file"># File 'lib/one2influx/config.rb', line 183</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_influx'>influx</span>
   <span class='cvar'>@@influx</span>
@@ -684,27 +699,27 @@ form.</p>
       <pre class="lines">
 
 
-193
-194
-195
-196
-197
-198
-199
-200
-201
-202
-203
-204
-205
-206
-207
 208
 209
-210</pre>
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/one2influx/config.rb', line 193</span>
+      <pre class="code"><span class="info file"># File 'lib/one2influx/config.rb', line 208</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_one_available?'>is_one_available?</span>
   <span class='kw'>begin</span>
@@ -755,12 +770,12 @@ form.</p>
       <pre class="lines">
 
 
-164
-165
-166</pre>
+179
+180
+181</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/one2influx/config.rb', line 164</span>
+      <pre class="code"><span class="info file"># File 'lib/one2influx/config.rb', line 179</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_one'>one</span>
   <span class='cvar'>@@one</span>
@@ -785,12 +800,12 @@ form.</p>
       <pre class="lines">
 
 
-172
-173
-174</pre>
+187
+188
+189</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/one2influx/config.rb', line 172</span>
+      <pre class="code"><span class="info file"># File 'lib/one2influx/config.rb', line 187</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_storage'>storage</span>
   <span class='cvar'>@@storage</span>
@@ -805,7 +820,7 @@ form.</p>
 </div>
 
     <div id="footer">
-  Generated on Tue May 12 23:40:12 2015 by
+  Generated on Tue May 19 21:38:48 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.4 (ruby-2.2.2).
 </div>

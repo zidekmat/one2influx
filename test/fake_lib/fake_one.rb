@@ -9,6 +9,7 @@ class One2Influx::FakeOne
 
   public
 
+  # Here you can set up different numbers for your testing session
   def initialize
     @count = {
         hosts: 300,

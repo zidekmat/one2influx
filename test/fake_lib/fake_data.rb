@@ -8,7 +8,7 @@ class One2Influx::FakeData
     counter = {hosts: 0, vms: 0, dss: 0, clusters: 0}
     fake_one = One2Influx::FakeOne.new
 
-    # Get data from all hMEM_USAGEosts in the pool
+    # Get data from all hosts in the pool
     hosts_xml = {}
     oo_hosts = []
     fake_one.hosts.each do |one_host|

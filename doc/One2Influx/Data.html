@@ -295,8 +295,7 @@ variable @points.</p>
 79
 80
 81
-82
-83</pre>
+82</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/one2influx/data.rb', line 8</span>
@@ -313,8 +312,8 @@ variable @points.</p>
   <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_rc'>rc</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span> <span class='kw'>if</span> <span class='const'>OpenNebula</span><span class='period'>.</span><span class='id identifier rubyid_is_error?'>is_error?</span><span class='lparen'>(</span><span class='id identifier rubyid_rc'>rc</span><span class='rparen'>)</span>
 
   <span class='comment'># Get data from all hosts in the pool
-</span>  <span class='id identifier rubyid_hosts_xml'>hosts_xml</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span> <span class='comment'># XML of all hosts, passed to theirs cluster
-</span>  <span class='id identifier rubyid_oo_hosts'>oo_hosts</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>  <span class='comment'># array of all instances of OneObject::Host
+</span>  <span class='id identifier rubyid_oo_hosts'>oo_hosts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>  <span class='comment'># hash of all instances of OneObject::Host
+</span>                 <span class='comment'>#   in form {ID =&gt; host}
 </span>  <span class='id identifier rubyid_host_pool'>host_pool</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_one_host'>one_host</span><span class='op'>|</span>
     <span class='id identifier rubyid_host'>host</span> <span class='op'>=</span> <span class='op'>::</span><span class='const'>One2Influx</span><span class='op'>::</span><span class='const'>Host</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_one_host'>one_host</span><span class='period'>.</span><span class='id identifier rubyid_to_xml'>to_xml</span><span class='comma'>,</span> <span class='ivar'>@client</span><span class='rparen'>)</span>
     <span class='comment'># Get data from all VMs belonging to current host
@@ -327,8 +326,7 @@ variable @points.</p>
       <span class='ivar'>@points</span> <span class='op'>+=</span> <span class='id identifier rubyid_vm'>vm</span><span class='period'>.</span><span class='id identifier rubyid_serialize_as_points'>serialize_as_points</span>
       <span class='id identifier rubyid_counter'>counter</span><span class='lbracket'>[</span><span class='symbol'>:vms</span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='int'>1</span>
     <span class='kw'>end</span>
-    <span class='id identifier rubyid_hosts_xml'>hosts_xml</span><span class='lbracket'>[</span><span class='id identifier rubyid_host'>host</span><span class='period'>.</span><span class='id identifier rubyid_tags'>tags</span><span class='lbracket'>[</span><span class='symbol'>:HOST_ID</span><span class='rbracket'>]</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_one_host'>one_host</span><span class='period'>.</span><span class='id identifier rubyid_to_xml'>to_xml</span>
-    <span class='id identifier rubyid_oo_hosts'>oo_hosts</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_host'>host</span>
+    <span class='id identifier rubyid_oo_hosts'>oo_hosts</span><span class='lbracket'>[</span><span class='id identifier rubyid_host'>host</span><span class='period'>.</span><span class='id identifier rubyid_tags'>tags</span><span class='lbracket'>[</span><span class='symbol'>:HOST_ID</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_host'>host</span>
     <span class='ivar'>@points</span> <span class='op'>+=</span> <span class='id identifier rubyid_host'>host</span><span class='period'>.</span><span class='id identifier rubyid_serialize_as_points'>serialize_as_points</span>
     <span class='id identifier rubyid_counter'>counter</span><span class='lbracket'>[</span><span class='symbol'>:hosts</span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='int'>1</span>
   <span class='kw'>end</span>
@@ -337,10 +335,10 @@ variable @points.</p>
 </span>  <span class='id identifier rubyid_cluster_pool'>cluster_pool</span> <span class='op'>=</span> <span class='const'>OpenNebula</span><span class='op'>::</span><span class='const'>ClusterPool</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='ivar'>@client</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_rc'>rc</span> <span class='op'>=</span> <span class='id identifier rubyid_cluster_pool'>cluster_pool</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_rc'>rc</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span> <span class='kw'>if</span> <span class='const'>OpenNebula</span><span class='period'>.</span><span class='id identifier rubyid_is_error?'>is_error?</span><span class='lparen'>(</span><span class='id identifier rubyid_rc'>rc</span><span class='rparen'>)</span>
-<span class='comment'>#
-</span>  <span class='comment'># Get data from all clusters in the pool
+
+  <span class='comment'># Get data from all clusters in the pool
 </span>  <span class='id identifier rubyid_cluster_pool'>cluster_pool</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_one_cluster'>one_cluster</span><span class='op'>|</span>
-    <span class='id identifier rubyid_cluster'>cluster</span> <span class='op'>=</span> <span class='op'>::</span><span class='const'>One2Influx</span><span class='op'>::</span><span class='const'>Cluster</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_one_cluster'>one_cluster</span><span class='period'>.</span><span class='id identifier rubyid_to_xml'>to_xml</span><span class='comma'>,</span> <span class='ivar'>@client</span><span class='comma'>,</span><span class='id identifier rubyid_hosts_xml'>hosts_xml</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_cluster'>cluster</span> <span class='op'>=</span> <span class='op'>::</span><span class='const'>One2Influx</span><span class='op'>::</span><span class='const'>Cluster</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_one_cluster'>one_cluster</span><span class='period'>.</span><span class='id identifier rubyid_to_xml'>to_xml</span><span class='comma'>,</span> <span class='ivar'>@client</span><span class='comma'>,</span> <span class='id identifier rubyid_oo_hosts'>oo_hosts</span><span class='rparen'>)</span>
     <span class='ivar'>@points</span> <span class='op'>+=</span> <span class='id identifier rubyid_cluster'>cluster</span><span class='period'>.</span><span class='id identifier rubyid_serialize_as_points'>serialize_as_points</span>
     <span class='id identifier rubyid_counter'>counter</span><span class='lbracket'>[</span><span class='symbol'>:clusters</span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='int'>1</span>
   <span class='kw'>end</span>
@@ -354,7 +352,7 @@ variable @points.</p>
 </span>  <span class='comment'># It has form {DS_ID_1: [HOST_ID_1, HOST_ID_2, ...], ...}
 </span>  <span class='id identifier rubyid_ds_has_hosts'>ds_has_hosts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='kw'>if</span> <span class='gvar'>$CFG</span><span class='period'>.</span><span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='symbol'>:ds</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:tags</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='symbol'>:HOSTS_IDS</span>
-    <span class='id identifier rubyid_oo_hosts'>oo_hosts</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_host'>host</span><span class='op'>|</span>
+    <span class='id identifier rubyid_oo_hosts'>oo_hosts</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_host'>host</span><span class='op'>|</span>
       <span class='id identifier rubyid_host'>host</span><span class='period'>.</span><span class='id identifier rubyid_datastores'>datastores</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ds'>ds</span><span class='op'>|</span>
         <span class='id identifier rubyid_ds_has_hosts'>ds_has_hosts</span><span class='lbracket'>[</span><span class='id identifier rubyid_ds'>ds</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
         <span class='id identifier rubyid_ds_has_hosts'>ds_has_hosts</span><span class='lbracket'>[</span><span class='id identifier rubyid_ds'>ds</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_host'>host</span><span class='period'>.</span><span class='id identifier rubyid_tags'>tags</span><span class='lbracket'>[</span><span class='symbol'>:HOST_ID</span><span class='rbracket'>]</span>
@@ -436,7 +434,7 @@ variable @points.</p>
 </div>
 
     <div id="footer">
-  Generated on Tue May 12 23:40:12 2015 by
+  Generated on Tue May 19 21:38:48 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.4 (ruby-2.2.2).
 </div>
