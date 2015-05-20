@@ -1,6 +1,6 @@
 # one2influx
 
-One2influx is small ruby daemon for getting monitoring data from [OpenNebula's XML-RPC API](http://docs.opennebula.org/4.12/integration/system_interfaces/api.html) and storing it to [InfluxDB](http://influxdb.com/). It needs Ruby 2+ to run.
+One2influx is small ruby daemon for getting monitoring data from [OpenNebula's XML-RPC API (4.12)](http://docs.opennebula.org/4.12/integration/system_interfaces/api.html) and storing it to [InfluxDB (0.9)](http://influxdb.com/). It needs Ruby 2+ to run.
 
 ### Installation
 For Debian 8, install it as local gem:
