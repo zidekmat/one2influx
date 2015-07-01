@@ -23,7 +23,7 @@ class One2Influx::OneObject
     points = []
     @metrics.each do |metric_name, metric_value|
       points << {
-          :name => metric_name,
+          :measurement => metric_name,
           :tags => @tags,
           :fields => {
               :value => metric_value.to_f
