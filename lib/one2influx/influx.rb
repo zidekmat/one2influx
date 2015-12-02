@@ -56,7 +56,7 @@ class One2Influx::Influx
   # @return [boolean]
   def db_exists?
     uri = URI('/query')
-    query = {:q => "SHOW RETENTION POLICIES #{@db}"}
+    query = {:q => "SHOW RETENTION POLICIES ON #{@db}"}
     uri.query = URI.encode_www_form(query)
 
     req = Net::HTTP::Get.new(uri.to_s)
